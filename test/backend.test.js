@@ -148,7 +148,7 @@ describe('flushing gauges', function() {
   var metric = null
   var cloudwatch = new Fake.CloudWatch()
   var backend = new Backend({
-    client: cloudwatch, namespace: 'abc.123', dimensions: { 'InstanceId': 'i-xyz' }
+    client: cloudwatch, namespace: 'abc.123', dimensions: { 'InstanceId': 'i-xyz' }, keyTransformMap: Fixture.keyTransformMap
   })
 
   beforeEach(function() {

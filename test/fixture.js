@@ -12,7 +12,10 @@ module.exports = {
     'api.request_time': [0, 1, 2, 3, 4]
   },
   gauges: {
-    'api.num_sessions': 50,
+    'api.number_sessions': 50,
     'statsd.timestamp_lag': 0
+  },
+  keyTransformMap: {
+    'number_sessions': 'num_sessions'
   }
 }
