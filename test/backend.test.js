@@ -66,8 +66,20 @@ describe('flushing counters', function() {
     expect(metric.MetricName).to.equal('api.request_count')
   })
 
-  it('should send a count', function() {
-    expect(metric.Value).to.equal(100)
+  it('should send a sum', function() {
+    expect(metric.StatisticValues.Sum).to.equal(100)
+  })
+
+  it('should send a min', function() {
+    expect(metric.StatisticValues.Minimum).to.equal(100)
+  })
+
+  it('should send a max', function() {
+    expect(metric.StatisticValues.Maximum).to.equal(100)
+  })
+
+  it('should send a sample count', function() {
+    expect(metric.StatisticValues.SampleCount).to.equal(1)
   })
 
   it('should send a timestamp', function() {
@@ -171,8 +183,20 @@ describe('flushing gauges', function() {
     expect(metric.MetricName).to.equal('api.num_sessions')
   })
 
-  it('should send a value', function() {
-    expect(metric.Value).to.equal(50)
+  it('should send a sum', function() {
+    expect(metric.StatisticValues.Sum).to.equal(50)
+  })
+
+  it('should send a min', function() {
+    expect(metric.StatisticValues.Minimum).to.equal(50)
+  })
+
+  it('should send a max', function() {
+    expect(metric.StatisticValues.Maximum).to.equal(50)
+  })
+
+  it('should send a sample count', function() {
+    expect(metric.StatisticValues.SampleCount).to.equal(1)
   })
 
   it('should send a timestamp', function() {
