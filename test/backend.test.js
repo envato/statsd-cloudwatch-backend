@@ -156,6 +156,27 @@ describe('flusing timers', function() {
   })
 })
 
+describe('flushing large datasets', function() {
+  var metric = null
+  var cloudwatch = new Fake.CloudWatch()
+  var backend = new Backend({
+    client: cloudwatch, namespace: 'abc.123', dimensions: { 'InstanceId': 'i-xyz' }, keyTransformMap: Fixture.keyTransformMap
+  })
+
+  beforeEach(function() {
+    backend.flush(Fixture.timestamp, {
+      gauges: Fixture.lotsOfGauges,
+      timers: Fixture.timers,
+      counters: Fixture.counters
+    })
+  })
+
+  it('should send data in 2 calls', function() {
+    expect(cloudwatch.Calls.length).to.equal(2)
+  })
+
+})
+
 describe('flushing gauges', function() {
   var metric = null
   var cloudwatch = new Fake.CloudWatch()
